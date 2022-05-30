@@ -1,4 +1,5 @@
 import streamlit as st
+import asyncio
 
 # EDA Pkgs
 import pandas as pd
@@ -6,6 +7,10 @@ import plotly.express as px
 # DB fxn
 
 from db_fxn import create_table,add_data,view_all_data,get_task,view_unique_tasks,edit_task_data,delete_data
+
+
+async def periodic():
+     await asyncio.sleep(1 , result="")
 
 def main():
 	st.title("To-Do app with Streamlit")
@@ -27,6 +32,7 @@ def main():
 
 		if st.button("Add Task"):
 			add_data(task,task_status,task_due_date)
+			asyncio.run(periodic())
 			st.success("Successfully Added Data {} ".format(task))
 
 	elif choice == "Read":
@@ -77,6 +83,7 @@ def main():
 
 			if st.button("Update Task"):
 				edit_task_data(new_task,new_task_status,new_task_due_date,task,task_status,task_due_date)
+				asyncio.run(periodic())
 				st.success("Successfully Updated:: {} To ::{} ".format(task,new_task))
 
 		result2 = view_all_data()
@@ -100,6 +107,7 @@ def main():
 		st.warning("Do you want to delete ::{}".format(selected_task))
 		if st.button("Delete Task"):
 			delete_data(selected_task)
+			asyncio.run(periodic())
 			st.success("Task has been successfully Deleted")
 
 		new_result = view_all_data()
