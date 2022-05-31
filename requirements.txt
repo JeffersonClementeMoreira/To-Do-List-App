@@ -1,4 +1,6 @@
-plotly
-pandas
-streamlit
-asyncio
+plotly = "*"
+pandas = ">=0.21.0"
+streamlit==1.9.0
+numpy==1.22.3
+asyncio = "*"
+protobuf = ">=3.6.0, !=3.11"
